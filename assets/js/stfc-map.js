@@ -120,21 +120,21 @@ STFCMap = (function() {
 
     /** parameters to adjust */
     const versionNumber = '2.4.1'; //info.version
-    const xMin = -6357;
-    const xWidth = 4400;
+    const xMin = -1900;
+    const xWidth = 1700;
     const xMax = xMin + xWidth;
-    const yMin = 1764;
-    const yHeight = 3700;
+    const yMin = -4400;
+    const yHeight = 1900;
     const yMax = yMin - yHeight;
     const bounds = [xy(xMin, yMin), xy(xMax, yMax)];
-    const startingZoom = -1;
-    const minZoom = -2;
+    const startingZoom = 1.6;
+    const minZoom = 0;
     const maxZoom = 4;
     const pathRenderer = L.canvas({padding: 0.5}); //default canvas renderer, paths saved here
     const systemsRenderer = L.canvas({padding: 0.5, pane:'systems'}); //separate canvas to keep the systems above the paths
     //const myRenderer3 = L.canvas({padding: 0.5, pane:'tooltipPane'}); //unused atm. possibly for labels
     const territoryRenderer = L.canvas({padding: 0.5, pane:'shadowPane'}); //territory renderer
-    let startingCoords = xy(-4679, -426); //the default starting location of the map
+    let startingCoords = xy(-1056, -5340); //the default starting location of the map
     let assetsUrl = './assets'; //default assets folder, if defined will load assets from an external source
     let systemClickEvent; //defaults to popup opener, if this is defined, will fire specified event instead
     let systemsJson; //all the system data to populate the map
