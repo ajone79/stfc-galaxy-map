@@ -961,6 +961,25 @@ STFCMap = (function() {
         let author = 'Originator: JoeCrash; New: TaggedZi'; //info.author
         return mapLink + mapName + close + " v" + versionNumber + "<br>" + "By: <strong>" + author + "</strong> - Server: <strong>" + serverInfo + "</strong><br>";
     };
+    let zoneHighlightLayer;
+    let highlightZone = function(systemName, radius) {
+        radius = radius || 180;
+        const sys = cleanName(systemName);
+        if(galaxy[sys] === undefined) return false;
+        const yx = galaxy[sys].yx;
+        if(zoneHighlightLayer) map.removeLayer(zoneHighlightLayer);
+        zoneHighlightLayer = L.circle(yx, {
+            radius: radius,
+            color: '#ff9142',
+            weight: 2,
+            fillColor: '#ff9142',
+            fillOpacity: 0.12,
+            pane: 'overlayPane'
+        }).addTo(map);
+        map.fitBounds(zoneHighlightLayer.getBounds(), {maxZoom: 3});
+        return true;
+    };
+
     return { //public interface
         init,
         systemCount,
@@ -996,6 +1015,9 @@ STFCMap = (function() {
         },
         flyToSystem: function(system, openPopup) {
             panToSystem(system, openPopup);
+        },
+        highlightZone: function(systemName, radius) {
+            return highlightZone(systemName, radius);
         },
         loadFile: async function(file, callback) {
             return await loadFile(file, callback);
