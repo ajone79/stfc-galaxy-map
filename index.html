@@ -25,7 +25,16 @@
     <script src="assets/js/stfc-ui.js" type="text/javascript" defer></script>
     <script>
         $(function() {
-            STFCMap.init();
+            STFCMap.init({ onSystemClick: 'stfc-system-selected' });
+            document.body.addEventListener('stfc-system-selected', function(e){
+                if (window.parent && e.detail) {
+                    window.parent.postMessage({
+                        type: 'stfc-system-selected',
+                        name: e.detail.name,
+                        level: e.detail.systemLevel
+                    }, '*');
+                }
+            });
         });
     </script>
 </body>
