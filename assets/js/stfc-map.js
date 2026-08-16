@@ -120,15 +120,15 @@ STFCMap = (function() {
 
     /** parameters to adjust */
     const versionNumber = '2.4.1'; //info.version
-    const xMin = -1900;
-    const xWidth = 1700;
+    const xMin = -3600;
+    const xWidth = 5000;
     const xMax = xMin + xWidth;
-    const yMin = -4400;
-    const yHeight = 1900;
+    const yMin = -1000;
+    const yHeight = 7500;
     const yMax = yMin - yHeight;
     const bounds = [xy(xMin, yMin), xy(xMax, yMax)];
-    const startingZoom = 1.6;
-    const minZoom = 0;
+    const startingZoom = 0.5;
+    const minZoom = -2;
     const maxZoom = 4;
     const pathRenderer = L.canvas({padding: 0.5}); //default canvas renderer, paths saved here
     const systemsRenderer = L.canvas({padding: 0.5, pane:'systems'}); //separate canvas to keep the systems above the paths
